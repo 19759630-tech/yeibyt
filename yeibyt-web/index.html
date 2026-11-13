@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yeibyt · YouTube a MP3 y WAV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <main class="app">
+
+    <section id="pantalla-url" class="pantalla activa">
+      <p class="etiqueta-pantalla">Pantalla de pegar URL</p>
+      <div class="logo" aria-label="Yeibyt">Yeibyt<span class="logo-play"></span></div>
+
+      <div class="tarjeta">
+        <h2 class="titulo-tarjeta"># Cambio de formato</h2>
+        <p>Cambiar el formato URL de videos a mp3 o WAV</p>
+      </div>
+
+      <div class="campo-url">
+        <input type="url" id="input-url" placeholder="Pegar URL aquí..." autocomplete="off">
+        <button id="btn-buscar" class="btn-redondo" aria-label="Buscar video"></button>
+      </div>
+      <p id="mensaje-url" class="ayuda">Pega una URL de YouTube para continuar</p>
+    </section>
+
+    <section id="pantalla-info" class="pantalla">
+      <button class="volver" data-ir="pantalla-url">← Volver</button>
+      <p class="etiqueta-pantalla centrado">Información del video</p>
+
+      <div class="contenido-info">
+        <div class="columna-video">
+          <div class="miniatura">
+            <img id="miniatura" alt="Miniatura del video">
+          </div>
+          <div class="tiempos">
+            <span>00:00:00</span>
+            <span id="duracion">--:--:--</span>
+          </div>
+        </div>
+
+        <div class="columna-form">
+          <div class="tarjeta">
+            <span class="etiqueta">Formato</span>
+            <div class="formatos">
+              <button class="opcion-formato activa" data-formato="mp3"><i></i>MP3</button>
+              <button class="opcion-formato" data-formato="wav"><i></i>WAV</button>
+            </div>
+          </div>
+
+          <div class="tarjeta selector" id="selector-calidad">
+            <span class="etiqueta" id="etiqueta-calidad">Calidad — MP3</span>
+            <button class="selector-actual" id="calidad-actual" aria-haspopup="listbox" aria-expanded="false">
+              <span id="calidad-texto">128 kbps — Medium</span>
+              <span class="flecha">⌄</span>
+            </button>
+            <ul class="lista-calidad" id="lista-calidad" role="listbox" hidden></ul>
+          </div>
+
+          <label class="etiqueta" for="input-titulo">Título</label>
+          <input type="text" id="input-titulo" class="input-texto" maxlength="120">
+
+          <label class="etiqueta" for="input-artista">Artista</label>
+          <input type="text" id="input-artista" class="input-texto artista" maxlength="80">
+
+          <button id="btn-convertir" class="btn-principal">Cambiar a mp3</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="pantalla-listo" class="pantalla">
+      <button class="volver" data-ir="pantalla-info">← Volver</button>
+      <div class="logo grande">Yeibyt<span class="logo-play"></span></div>
+
+      <div class="circulo-check" id="circulo-check"><span>✓</span></div>
+      <div class="barra-estado" id="barra-estado">Descarga completada</div>
+      <button id="btn-otro" class="enlace">Convertir otro video</button>
+    </section>
+
+  </main>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-caja" role="dialog" aria-labelledby="modal-titulo">
+      <div class="modal-icono">Y</div>
+      <h3 id="modal-titulo">Acceso al Almacenamiento</h3>
+      <p>Permitir que esta app realice cambios en el dispositivo</p>
+      <div class="modal-botones">
+        <button id="modal-no" class="btn-no">NO</button>
+        <button id="modal-si" class="btn-si">SÍ</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="script.js"></script>
+</body>
+</html>
